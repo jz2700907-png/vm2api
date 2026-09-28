@@ -42,6 +42,10 @@ In each place it passes, someone is helping someone else:
   It is synthesised with numpy/scipy: PolyBLEP string ensembles, brass, a formant choir, additive piano,
   Karplus-Strong koto/guzheng, dizi-style flute, taiko and braams. Every cut and impact lands on the
   bar grid (1 bar = 2.5 s).
+- **Orchestral score (v2)**: `tools/score.py` writes the same cue as MIDI, one file per section (sectional strings,
+  horns, trumpets, trombones, choir, timpani/taiko, piano, harp, koto, shakuhachi…). It renders each part with real
+  instrument samples (MuseScore General SF2 via fluidsynth: `apt install fluidsynth musescore-general-soundfont-lossless`),
+  then balances the stems and mixes them in a convolution hall -> `build/score.wav`.
 - **Narration**: `tools/vo.py` synthesises the Chinese voice-over offline with the Kokoro TTS model (sherpa-onnx),
   pitched down a semitone with light EQ, compression and room reverb.
 - **Mix**: `tools/mix.py` handles narration ducking, bus compression and a look-ahead limiter.
@@ -64,6 +68,8 @@ node tools/render.js --video --workers 4     # -> build/video.mp4
 ffmpeg -i build/video.mp4 -i build/mix.wav -map 0:v -map 1:a -c:v libx264 -crf 20 -preset slow \
   -tune animation -pix_fmt yuv420p -c:a aac -b:a 192k -movflags +faststart overwatch_fan_trailer_1080p.mp4
 ```
+
+`SHOTLIST.md` lists the gameplay footage and voice material for the footage-based cut.
 
 `story.json` holds the scene timeline and narration script. Edit the lines there and rerun the pipeline to
 change the story.

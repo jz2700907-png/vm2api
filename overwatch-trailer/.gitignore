@@ -4,3 +4,5 @@ fonts/
 build/
 # small chat preview encode (regenerate from build/video.mp4)
 *_preview.mp4
+*_preview.m4a
+score_preview.m4a
