@@ -1,0 +1,9 @@
+{
+  "name": "overwatch-fan-trailer",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "stills": "node tools/render.js --stills",
+    "render": "node tools/render.js --video"
+  }
+}
